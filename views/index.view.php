@@ -14,7 +14,7 @@
             <th scope="col">Delete</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody  id="tableBody">
             <?php displayTable($tasks)?>
         </tbody>
     </table>

@@ -12,8 +12,8 @@ function displayTable($data)
             <td><img src="'. $task['image'].'" alt="" style="width: 8rem;"></td>           
             <td><input onchange="markComplete()" type="checkbox" id="scales" name="scales" '. ($task['done'] === 1 ? 'checked' : '') .'>
             <label for="scales"></label></td>          
-            <td><button type="button" class="btn btn-primary">Update</button></td>            
-            <td><button type="button" class="btn btn-danger">Delete</button></td>
+            <td><button type="button" class="btn btn-primary" id="taskBtn'. $task['id'] .'" >Update</button></td>            
+            <td><button type="button" class="btn btn-danger" id="taskBtn'. $task['id'] .'" onclick="deleteTask('. $task['id'] .')">Delete</button></td>
         </tr>';
     }
 }
