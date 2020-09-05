@@ -8,6 +8,7 @@
     require 'core/Request.php';
     require 'public/utilities.php';
 
+
     return new QueryBuilder(
         Connection::make($config['database'])
     );

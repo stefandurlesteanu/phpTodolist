@@ -15,9 +15,17 @@ class QueryBuilder
     }
 
     public function selectAll($table){
-        $stmt = $this->pdo->query("SELECT * FROM {$table}");
+        $stmt = $this->pdo->query("SELECT * FROM {$table} WHERE deleted=0");
 
-        return $stmt->fetchAll(PDO::FETCH_CLASS);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function deleteEntry($table, $id)
+    {
+        $query = "UPDATE {$table} SET deleted=1 WHERE id= :id";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
     }
 
 }
