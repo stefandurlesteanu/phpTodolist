@@ -1,9 +1,8 @@
 <?php
 
+    $database = require 'core/booting.php';
 
-   $query = require 'booting.php';
 
 
-   $tasks = $query->selectAll('Tasks');
+  require Router::load('routes.php')-> direct(Request::uri());
 
-    var_dump($tasks);
