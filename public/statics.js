@@ -28,20 +28,21 @@ function renderTableData(data){
             <td>${entry['description']}</td>           
             <td>${entry['due_date']}</td>            
             <td><img src="${entry['image']}" alt="" style="width: 8rem;"></td>           
-            <td><input onchange="markComplete(${entry['id']})" type="checkbox" id="taskDone${entry['id']}"
+            <td><input onchange="toggleTask(${entry['id']}, 'done')" type="checkbox" id="taskDone${entry['id']}"
              name="taskDone${entry['id']}" ${check} >
             <label for="scales"></label></td>          
             <td><button type="button" class="btn btn-primary" id="taskUpdate${entry['id']}" >Update</button></td>            
-            <td><button type="button" class="btn btn-danger" id="taskDelete${entry['id']}" onclick="deleteTask(${entry['id']})">Delete</button></td>
+            <td><button type="button" class="btn btn-danger" id="taskDelete${entry['id']}" onclick="toggleTask(${entry['id']}, 'deleted')">Delete</button></td>
         </tr>
 
 `
     })
 }
 
-function deleteTask(id){
+function toggleTask(id, row){
     let data = {
     'id': id,
+    'row': row
     };
 
     let settings = {
@@ -58,7 +59,8 @@ function deleteTask(id){
         return serverResponse.json();
     })
     .then((jsonResponse) => {
-
+        console.log(jsonResponse);
+        loadTableData();
     })
 
 }
