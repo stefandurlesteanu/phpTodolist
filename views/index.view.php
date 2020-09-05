@@ -15,7 +15,7 @@
         </tr>
         </thead>
         <tbody>
-
+            <?php displayTable($tasks)?>
         </tbody>
     </table>
 </div>
