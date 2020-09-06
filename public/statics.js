@@ -52,7 +52,8 @@ function renderTableData(data){
 
 function addNewTask(){
     let formField = document.getElementById("addForm");
-    formField.innerHTML += `
+    let newDiv = document.createElement("div");
+    newDiv.innerHTML += `
          <fieldset style="border:1px solid #ccc !important; padding: 1em 16px; border-radius: 16px; margin-bottom: 2rem;">
             <legend>New Task:</legend>
             <div class="form-row">
@@ -66,7 +67,7 @@ function addNewTask(){
                 </div>
                 <div class="form-group col-md-12">
                     <label for="taskDescription">Description</label>
-                    <textarea class="form-control" id="taskDescription"></textarea>
+                    <textarea class="form-control" id="taskDescription[]"></textarea>
                 </div>
                 <div class="form-group col-md-8">
                     <label for="taskImage">Image</label>
@@ -75,6 +76,7 @@ function addNewTask(){
             </div>
         </fieldset>
     `
+    formField.appendChild(newDiv);
 }
 
 function removeTask(){
@@ -105,5 +107,8 @@ function toggleTask(id, row){
         console.log(jsonResponse);
         loadTableData();
     })
+}
+
+function insertDB(data){
 
 }
