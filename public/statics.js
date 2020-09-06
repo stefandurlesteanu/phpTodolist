@@ -1,8 +1,19 @@
-window.onload= loadTableData();
+window.onload = () => window.location.pathname === '/Todolist/' ? loadTableData() : '';
 
-function markComplete(id){
-    let checkBox = document.getElementById("taskDone"+id);
+function btnView() {
+    let formFieldLength = document.getElementById("addForm").childElementCount;
+    let minusBtn = document.getElementById("removeTaskBtn");
+    console.log("1")
+    if (formFieldLength <= 1){
+        minusBtn.style.display = "none";
+        console.log("2")
+    }  else {
+        minusBtn.style.display = "";
+        console.log("3")
+    }
+
 }
+
 
 function loadTableData(){
     fetch('models/index-show-table')
@@ -37,6 +48,38 @@ function renderTableData(data){
 
 `
     })
+}
+
+function addNewTask(){
+    let formField = document.getElementById("addForm");
+    formField.innerHTML += `
+         <fieldset style="border:1px solid #ccc !important; padding: 1em 16px; border-radius: 16px; margin-bottom: 2rem;">
+            <legend>New Task:</legend>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="taskName">Name</label>
+                    <input type="text" class="form-control" id="taskName" name="taskName[]">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="taskDueDate">Due Date</label>
+                    <input type="date" class="form-control" id="taskDueDate" name="taskDueDate[]">
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="taskDescription">Description</label>
+                    <textarea class="form-control" id="taskDescription"></textarea>
+                </div>
+                <div class="form-group col-md-8">
+                    <label for="taskImage">Image</label>
+                    <input type="file" class="form-control-file" id="taskImage" name="taskImage[]">
+                </div>
+            </div>
+        </fieldset>
+    `
+}
+
+function removeTask(){
+    let formField = document.getElementById("addForm");
+    formField.children[1].remove();
 }
 
 function toggleTask(id, row){
