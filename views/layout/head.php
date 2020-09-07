@@ -13,6 +13,7 @@
 
     <!-- Custom made -->
     <script rel="script" src="public/statics.js"></script>
+    <link rel="stylesheet" href="public/css.js">
     <title>About Culture</title>
 
 

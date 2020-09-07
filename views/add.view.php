@@ -69,12 +69,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
                     </div>
                     <div class="form-group col-md-8">
                         <label for="taskImage">Image</label>
-                        <input type="file" class="form-control-file" id="taskImage" name="taskImage[]">
+                        <input type="file" class="form-control-file " id="taskImage" name="taskImage[]">
                     </div>
                 </div>
             </fieldset>
         </div>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Add Your TODOs" class="btn btn-block btn-lg btn-outline-dark" style="margin-bottom: 10rem">
     </form>
 </div>
 
