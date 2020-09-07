@@ -32,16 +32,20 @@ class QueryBuilder
     }
 
     public function addTask($table, $data){
-        $innerData = [
-            'name' => $data['taskName'],
-            'description' => $data['taskDescription'],
-            'due_date' => $data['taskDueDate'],
-            'image' => $data['taskImage']
-        ];
+        foreach ($data['data'] as $entry) {
+            $innerData = [
+                'name' => $entry['taskName'],
+                'description' => $entry['taskDescription'],
+                'due_date' => $entry['taskDueDate'],
+                'image' => $entry['taskImage']
+            ];
 
-        $query = "INSERT INTO {$table} (name, description, due_date, image ) VALUES (:name, :description, :due_date, :image)";
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute($innerData);
+            $query = "INSERT INTO {$table} (name, description, due_date, image ) VALUES (:name, :description, :due_date, :image)";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute($innerData);
+        }
+
+        return 'Check DB!' ;
     }
 
 }

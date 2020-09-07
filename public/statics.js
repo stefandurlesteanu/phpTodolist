@@ -14,6 +14,9 @@ function btnView() {
 
 }
 
+function echo(){
+    console.log("DONE")
+}
 
 function loadTableData(){
     fetch('models/index-show-table')
@@ -67,7 +70,7 @@ function addNewTask(){
                 </div>
                 <div class="form-group col-md-12">
                     <label for="taskDescription">Description</label>
-                    <textarea class="form-control" id="taskDescription[]"></textarea>
+                    <textarea class="form-control" id="taskDescription" name="taskDescription[]"></textarea>
                 </div>
                 <div class="form-group col-md-8">
                     <label for="taskImage">Image</label>
@@ -110,5 +113,24 @@ function toggleTask(id, row){
 }
 
 function insertDB(data){
+    let dbData = {
+        data
+    };
 
+    let settings = {
+        'method': 'POST',
+        'headers': {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(dbData),
+    };
+
+    fetch('models/addTask', settings)
+        .then((serverResponse) => {
+            return serverResponse.json();
+        })
+        .then((jsonResponse) => {
+            console.log(jsonResponse);
+        })
 }

@@ -5,4 +5,3 @@
     $ceva = $database->deleteEntry('Tasks', $input);
     exit (json_encode($ceva));
 
-//
