@@ -3,6 +3,7 @@
 <?php
 
 $imageErr = '';
+$imageSuccess = '';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $dbData = array();
@@ -21,13 +22,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    if (strlen($imageErr) > 0) {
+    if (strlen($imageErr) === 0) {
         $jsonData = json_encode($dbData);
 
 
         echo '<script type="text/javascript">
         insertDB(' . $jsonData . ')
     </script>';
+        $imageSuccess .= "Task successfully added!";
+
     }
 }
 
@@ -39,7 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <button type="button" class="btn btn-danger" id="removeTaskBtn" onclick="removeTask(); btnView(); event.preventDefault();" style="border-radius: 50%; display: none;" ><i class="fa fa-minus-square"></i></button>
     </div>
 
-    <span style="color: red"><?= $imageErr ?></span>
+    <span class="alert-danger" role="alert"><?= $imageErr?></span>
+    <span class="alert-success" role="alert"><?= $imageSuccess?></span>
 
     <form  method="post" action="/Todolist/add"  enctype="multipart/form-data">
         <div id="addForm">
