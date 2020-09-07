@@ -27,12 +27,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
         echo '<script type="text/javascript">
-        insertDB(' . $jsonData . ')
-    </script>';
+                insertDB(' . $jsonData . ')
+            </script>';
         $imageSuccess .= "Task successfully added!";
 
     }
+//    sleep(3);
+//    redirect('/Todolist/add');
 }
+
+
 
 ?>
 
@@ -42,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <button type="button" class="btn btn-danger" id="removeTaskBtn" onclick="removeTask(); btnView(); event.preventDefault();" style="border-radius: 50%; display: none;" ><i class="fa fa-minus-square"></i></button>
     </div>
 
-    <span class="alert-danger" role="alert"><?= $imageErr?></span>
+    <span class="alert-danger" role="alert"><?= $imageErr ?></span>
     <span class="alert-success" role="alert"><?= $imageSuccess?></span>
 
     <form  method="post" action="/Todolist/add"  enctype="multipart/form-data">

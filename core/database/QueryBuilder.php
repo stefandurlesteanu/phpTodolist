@@ -22,11 +22,10 @@ class QueryBuilder
 
     public function deleteEntry($table, $data)
     {
-        $query = "UPDATE {$table} SET {$data['row']} = 1 WHERE id = :id ";
+        $query = "UPDATE {$table} SET {$data['row']} = IF({$data['row']} = 0, 1, 0) WHERE id = :id ";
         $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(":id" , $data['id'], PDO::PARAM_INT);
         $stmt->execute();
-
 
         return $this->selectAll($table);
     }
